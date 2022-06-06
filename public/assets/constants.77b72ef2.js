@@ -1,1 +1,0 @@
-const a=(o=0)=>{const s=Math.floor(o/60),t=Math.round(o-s*60);return s+":"+(t.toString().length===1?"0"+t:t)},e="https://ak-audio.herokuapp.com",r="https://ak-audio.herokuapp.com";export{e as b,a as f,r as s};

@@ -13,7 +13,6 @@ const getVideoInfoFormPlaylitById = async (req, res) => {
             totalResults: info.totalResults,
             items: info.items.map(e => {
                 let thumbnails = [];
-                console.log(e.snippet.thumbnails)
                 for(let i in e.snippet.thumbnails) {
                     thumbnails.push({
                         type: i,
@@ -27,6 +26,14 @@ const getVideoInfoFormPlaylitById = async (req, res) => {
                     authorId: e.snippet.videoOwnerChannelId,
                     authorName: e.snippet.videoOwnerChannelTitle,
                 }
+            }).filter(e => {
+                let a = true;
+                if(e.title === 'Deleted video') {
+                    a = false;
+                } else if (e.title === "Private video"){
+                    a = false;
+                }
+                return a
             })
         }
 

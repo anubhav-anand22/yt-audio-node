@@ -12,8 +12,10 @@ const getVideoFromList = async (pageToken = '', id, t) => {
 
     const obj = await getVideoFromList(data.nextPageToken, id, t + 50);
 
+    const items = [...data.items, ...obj.items]
+    
     return {
-        items: [...data.items, ...obj.items],
+        items,
         totalResults: data.pageInfo.totalResults,
     };
 };
