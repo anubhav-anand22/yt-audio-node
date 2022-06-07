@@ -11,7 +11,17 @@ const getImgLinkFromListId = async (req, res) => {
 
         const { data } = await axios(url);
 
-        const thumbnails = data?.items[0]?.snippet?.thumbnails;
+        const item = data?.items.filter(e => {
+            let a = true;
+            if(e.snippet.title === 'Deleted video') {
+                a = false;
+            } else if (e.snippet.title === "Private video"){
+                a = false;
+            }
+            return a
+        })[0];
+
+        const thumbnails = item?.snippet?.thumbnails;
 
         const thumbnail =
             thumbnails['maxres'] ||
